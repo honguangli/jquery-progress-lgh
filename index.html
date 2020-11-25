@@ -87,12 +87,12 @@
                             area: ['300px', 'auto'],
                             closeBtn: false,
                             success: function(layero, index){
-                              startProgress('layui', 'demo4');
+                              startProgress('layui', 'demo4', index);
                             }
                         });
         })
         
-        function startProgress(type, filter) {
+        function startProgress(type, filter, index) {
           // step-1
           let percentage = 0;
           const progress = new Progress({
@@ -110,6 +110,9 @@
                             break;
                           case 'layui':
                             element.progress(filter, percentage + '%');
+                            if (index && percentage === 100) {
+                              layer.close(index);
+                            }
                             break;
                           default:
                           
